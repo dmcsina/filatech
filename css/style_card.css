@@ -1,0 +1,169 @@
+
+@font-face {
+  font-family: "Iran";
+  src: url("../fonts/Vazir.woff") format("woff");
+}
+
+.cart-main {
+    font-family: "Iran";
+    margin: 0;
+    padding: 30px ;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+    /*min-height: 100vh;*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    background: #ffffff;
+}
+
+.cart {
+    direction: rtl;
+    position: relative;
+    width: 350px;
+    height: min-content;
+    padding: 25px;
+    background: #ffffff;
+    border: 2px solid #e1e3e6;
+    border-radius: 20px;
+    transition: .4s;
+}
+
+.cart:hover {
+    border-color: #ffffff;
+    transform: translateY(-10px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, .08);
+}
+
+.cart .cart-header h3 {
+    color: #2631d3;
+    font-size: 28px;
+}
+
+.cart .cart-header p {
+    color: #757d8a;
+    font-size: 20px;
+}
+
+.cart .cart-header .p {
+    position: absolute;
+    color: #1eff1e;
+    background: #fef0f0;
+    right: 25px;
+    top: 25px;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+.cart .card-img {
+    position: relative;
+    height: 220px;
+    border-radius: 12px;
+    margin: 22px 0;
+    overflow: hidden;
+}
+
+.cart .card-img img {
+    width: 100%;
+    height: 100%;
+    transition: .4s;
+}
+
+.cart:hover .card-img img {
+    transform: scale(1.06);
+}
+
+.cart .card-img i {
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #757d8a;
+    background: #ffffff;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.cart .cart-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cart .cart-details .price p {
+    color: #757d8a;
+    font-size: 20px;
+}
+
+.cart .cart-details .price strong {
+    color: #545d6d;
+    font-size: 22px;
+}
+
+.cart .cart-details .colors {
+    display: flex;
+}
+
+.cart .cart-details .colors div {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin: 0 4px;
+}
+
+.cart .cart-details .colors div:nth-child(1) {
+    background: linear-gradient(90deg, #b72c31, #efb9b0);
+}
+
+.cart .cart-details .colors div:nth-child(2) {
+    background: linear-gradient(90deg, #25476d, #a8bed2);
+}
+
+.cart .cart-details .colors div:nth-child(3) {
+    background: linear-gradient(90deg, #10505b, #a4beb2);
+}
+
+.cart .cart-details .colors div i {
+    color: #ffffff;
+    margin: 5px;
+    font-size: 25px;
+    opacity: 0;
+}
+
+.cart .cart-details .colors div.selected i {
+    opacity: 1;
+}
+
+.cart .card-sizes {
+    display: flex;
+    justify-content: space-between;
+    margin: 22px 0;
+}
+
+.cart .card-sizes .p {
+    cursor: pointer;
+    color: #757d8a;
+    background: #f1f2f3;
+    border-radius: 3px;
+    padding: 6px 12px;
+}
+
+.cart .card-sizes span.selected {
+    color: #4e73f8;
+    background: #d5defe;
+}
+
+.cart .cart-footer button {
+    cursor: pointer;
+    width: 100%;
+    height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(#6787fd, #3f66f5);
+    color: #ffffff;
+    font-size: 20px;
+    letter-spacing: .5px;
+}
