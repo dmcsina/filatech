@@ -19,6 +19,10 @@ body {
   background-color: #ffffff;
 }
 
+.cart-header {
+    min-height: 55px;
+}
+
 .header_section {
   background-color: var(--color-iceblue);
 }
