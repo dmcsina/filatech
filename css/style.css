@@ -2,13 +2,24 @@
   font-family: "Iran";
   src: url("../fonts/Iranian-Sans.ttf") ;
 }
+
+:root {
+  --color-iceblue: #D6e6f3;
+  --color-powerblue: #A6C5D7;
+  --color-sapphire: #0F52BA;
+  --color-deepheavy: #000926;
+  --color-card: #FFFFFF;
+  --color-border: #E1E3E6;
+}
+
+
 body {
   font-family: "Iran";
   color: #000000;
   background-color: #ffffff;
 }
 .header_section{
-background-color: #dbe6f0;
+background-color: var(--color-iceblue);
 }
 
 .layout_padding {
@@ -43,7 +54,7 @@ background-color: #dbe6f0;
 /*header section*/
 .hero_area {
   height: 98vh;
-  background-color: #b2c0f0;
+  background-color: var(--color-powerblue);
 }
 
 .sub_page .hero_area {
@@ -182,21 +193,22 @@ a:focus {
 .slider-btn1 {
   display: inline-block;
   padding: 10px 35px;
-  background-color: #7a97ff;
-  border: 1px solid #7a97ff;
+  margin: 0px 40px;
+  background-color: var(--color-sapphire);
+  border: 1px solid var(--color-sapphire);
   color: #ffffff;
 }
 
 .slider-btn1:hover {
   background-color: transparent;
-  color: #7a97ff;
+  color: var(--color-sapphire);
 }
 
 .slider-btn2 {
   display: inline-block;
   padding: 10px 35px;
-  background-color: #273268;
-  border: 1px solid #273268;
+  background-color: var(--color-iceblue);
+  border: 1px solid var(--color-iceblue);
   color: #ffffff;
 }
 
@@ -206,13 +218,16 @@ a:focus {
 }
 
 .slider_item-detail h1 {
+  text-align: right;
+  margin: 0px 20px;
   font-size: 68px;
   width: 95%;
   text-transform: uppercase;
 }
 
 .slider_item-detail p {
-  margin: 45px 0;
+  text-align: right;
+  margin: 45px 25px;
 }
 
 .slider_section #carouselExampleControls,
@@ -233,7 +248,7 @@ a:focus {
   background-repeat: no-repeat;
   background-size: 10px;
   background-position: center;
-  background-color: #dbe6f0;
+  background-color: var(--color-iceblue);
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
