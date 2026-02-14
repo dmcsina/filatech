@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Iran";
-  src: url("../fonts/Iranian-Sans.ttf") ;
+  src: url("../fonts/Iranian-Sans.ttf");
 }
 
 :root {
@@ -18,8 +18,9 @@ body {
   color: #000000;
   background-color: #ffffff;
 }
-.header_section{
-background-color: var(--color-iceblue);
+
+.header_section {
+  background-color: var(--color-iceblue);
 }
 
 .layout_padding {
@@ -97,7 +98,7 @@ a:focus {
 .btn:focus {
   outline: none !important;
   -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .navbar-brand,
@@ -107,6 +108,33 @@ a:focus {
   font-size: 24px;
   color: #fafcfd;
 }
+
+.header-actions {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+}
+
+.login-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: auto;
+  padding: 6px 14px;
+  border-radius: 10px;
+  border: 1px solid #ffffff55;
+  background: var(--color-sapphire);
+  color: #fff;
+
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: var(--color-powerblue);
+}
+
 
 .custom_nav-container .nav_search-btn {
   background-image: url(../images/search-icon.png);
@@ -124,8 +152,8 @@ a:focus {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .navbar-brand img {
@@ -183,8 +211,8 @@ a:focus {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
@@ -250,7 +278,7 @@ a:focus {
   background-position: center;
   background-color: var(--color-iceblue);
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .slider_section .carousel-control-prev:hover,
@@ -271,13 +299,13 @@ a:focus {
 /* end slider section */
 .bg {
   /*background-image: url(../images/bg.jpg);*/
-  
+
 }
 
 .about_section .row {
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .about_detail-box p {
@@ -317,10 +345,10 @@ a:focus {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .brand_item-box {
@@ -360,11 +388,11 @@ a:focus {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   overflow: hidden;
 }
 
@@ -391,7 +419,7 @@ a:focus {
   background-color: rgba(37, 37, 37, 0.9);
   z-index: 1;
   -webkit-transform: translateY(320px);
-          transform: translateY(320px);
+  transform: translateY(320px);
   -webkit-transition: -webkit-transform 0.3s;
   transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
@@ -404,7 +432,7 @@ a:focus {
 
 .brand_img-box:hover::before {
   -webkit-transform: translateY(0);
-          transform: translateY(0);
+  transform: translateY(0);
 }
 
 .brand_img-box:hover a {
@@ -443,8 +471,8 @@ a:focus {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .info_items .item {
@@ -454,11 +482,11 @@ a:focus {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   text-align: center;
 }
 
@@ -493,7 +521,7 @@ a:focus {
   background-color: #fff;
   left: 50%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .info_items .item .img-box.box-1 {
@@ -507,6 +535,7 @@ a:focus {
 .info_items .item .img-box.box-3 {
   background-image: url(../images/envelope-blue.png);
 }
+
 .info_items .item .img-box.box-4 {
   background-image: url(../images/working.png);
 }
@@ -527,6 +556,7 @@ a:focus {
 .info_items .item .img-box:hover.box-3 {
   background-image: url(../images/envelope-white.png);
 }
+
 .info_items .item .img-box:hover.box-4 {
   background-image: url(../images/woking-white.png);
 }
@@ -551,4 +581,3 @@ a:focus {
 
 /* end footer section*/
 /*# sourceMappingURL=style.css.map */
-
