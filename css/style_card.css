@@ -1,23 +1,46 @@
-
 @font-face {
-  font-family: "Iran";
-  src: url("../fonts/Vazir.woff") format("woff");
+    font-family: iransharp;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/eot/iransharp_regular_web.eot');
+    src: url('../fonts/eot/iransharp_regular_web.eot?#iefix') format('embedded-opentype'),
+        /* IE6-8 */
+        url('../fonts/woff2/iransharp_regular_web.woff2') format('woff2'),
+        /* FF39+,Chrome36+, Opera24+*/
+        url('../fonts/woff/iransharp_regular_web.woff') format('woff'),
+        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+        url('../fonts/ttf/iransharp_regular_web.ttf') format('truetype');
+}
+@font-face {
+	font-family: iransharpbold;
+	font-style: normal;
+	font-weight: bold;
+	src: url('../fonts/eot/iranyekanwebbold.eot');
+	src: url('../fonts/eot/iransharp_bold_web.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('../fonts/woff2/iransharp_bold_web.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('../fonts/woff/iransharp_bold_web.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('../fonts/ttf/iransharp_bold_web.ttf') format('truetype');
 }
 
+
 :root {
-  --color-iceblue: #D6e6f3;
-  --color-powerblue: #A6C5D7;
-  --color-sapphire: #0F52BA;
-  --color-deepheavy: #000926;
-  --color-card: #FFFFFF;
-  --color-border: #E1E3E6;
+    --color-iceblue: #D6e6f3;
+    --color-powerblue: #A6C5D7;
+    --color-sapphire: #0F52BA;
+    --color-deepheavy: #000926;
+    --color-success: #2FBF71;
+    --color-success-light: #E6F7EF;
+    --color-danger: #E5484D;
+    --color-danger-light: #FDECEC;
+    --color-card: #FFFFFF;
+    --color-border: #E1E3E6;
 }
 
 .cart-main {
     direction: rtl;
-    font-family: "Iran";
+    font-family: "iransharp";
     margin: 0;
-    padding: 30px ;
+    padding: 30px;
     border: 0;
     outline: 0;
     box-sizing: border-box;
@@ -26,7 +49,7 @@
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
     justify-items: center;
-    background: #ffffff;
+    background: #efefef44;
 }
 
 .cart {
@@ -36,9 +59,10 @@
     height: min-content;
     padding: 15px;
     background: #ffffff;
-    border: 2px solid #e1e3e6;
+    border: 1px solid #E3EDF5;
     border-radius: 20px;
     transition: .4s;
+    text-align: right;
 }
 
 .cart:hover {
@@ -47,35 +71,34 @@
     box-shadow: 0 5px 12px rgba(0, 0, 0, .08);
 }
 
-.cart .cart-header h3 {
-    
-    color: #2631d3;
-    font-size: 30px  ;
-    line-height: 1.6;
-}
 
 .cart .cart-header p {
-    color: #757d8a;
-    font-size: 20px ;
+    font-family: "iransharpbold";
+    font-weight: 2000;
+    color: var(--color-deepheavy);
+    font-size: 15px;
+    padding: 5px;
+    padding-top: 10px;
 }
 
-.cart .cart-header .p {
+.cart .card-img .status {
+
     position: absolute;
-    color: #1eff1e;
-    background: #ffffff;
-    right: 25px;
-    top: 20px;
-    padding: 0px 8px;
-    border-radius: 12px;
-    font-size: 15px ;
+    top: 10px;
+    right: 10px;
+    padding: 4px 10px;
+    font-size: 13px;
+    border-radius: 20px;
+    background: var(--color-success-light);
+    color: var(--color-success);
 }
+
+
 
 .cart .card-img {
     position: relative;
-    height: 160px;
     border-radius: 12px;
-    margin: 15px 0px;
-    padding: 15px 0px 0px;
+    padding: 10px 0px 0px;
     overflow: hidden;
 }
 
@@ -89,17 +112,6 @@
     transform: scale(1.06);
 }
 
-.cart .card-img i {
-    cursor: pointer;
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    color: #757d8a;
-    background: #ffffff;
-    padding: 6px;
-    border-radius: 6px;
-}
-
 .cart .cart-details {
     display: flex;
     align-items: center;
@@ -108,14 +120,17 @@
 }
 
 .cart .cart-details .price p {
-    color: #757d8a;
+    color: var(--color-sapphire);
     font-size: 20px;
+    padding: 5px;
 }
 
 .cart .cart-details .price strong {
-    color: #545d6d;
+    font-family: 'iransharp', sans-serif;
+    color: var(--color-sapphire);
     font-size: 20px;
-    
+    margin: 10px;
+    padding: 10px;
 }
 
 .cart .cart-details .colors {
@@ -142,16 +157,7 @@
     background: linear-gradient(90deg, #10505b, #a4beb2);
 }
 
-.cart .cart-details .colors div i {
-    color: #ffffff;
-    margin: 5px;
-    font-size: 25px;
-    opacity: 0;
-}
 
-.cart .cart-details .colors div.selected i {
-    opacity: 1;
-}
 
 .cart .card-sizes {
     display: flex;
@@ -159,26 +165,21 @@
     margin: 20px 0;
 }
 
-.cart .card-sizes .p {
-    cursor: pointer;
-    color: #757d8a;
-    background: #f1f2f3;
-    border-radius: 3px;
-    padding: 6px 12px;
-}
 
 .cart .card-sizes span.selected {
     color: #4e73f8;
-    background: #d5defe;
+    background: #0037ff;
 }
 
 .cart .cart-footer button {
     cursor: pointer;
     width: 100%;
-    height: 38px;
+    height: 50px;
     border-radius: 12px;
-    background: linear-gradient(#6787fd, #3f66f5);
+    background: linear-gradient(135deg, #0f52ba, #0050ff);
     color: #ffffff;
-    font-size: 14px;
+    font-size: 16px;
     letter-spacing: .5px;
+    border: none;
+    outline: var(--color-iceblue);
 }
