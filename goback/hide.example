@@ -1,0 +1,4 @@
+user : superuser
+password : supersecret
+dbname : superdatabase
+sslmode : disable/enable
