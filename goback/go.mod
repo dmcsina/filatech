@@ -1,4 +1,4 @@
-module najaftech/filatech
+module najaftech.filatech
 
 go 1.25.7
 
