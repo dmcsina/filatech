@@ -3,7 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
+
 	"net/http"
 	"strings"
 )
@@ -53,7 +54,7 @@ func (app *application) createUser(w http.ResponseWriter, r *http.Request) {
 
 	// Parse request body
 	var req UserRequest
-	body, err := ioutil.ReadAll(r.Body)
+	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -61,18 +62,18 @@ func (app *application) createUser(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(body, &req)
 
 	// Validate required fields
-	// if req.Username == "" {
-	// 	app.sendErrorResponse(w, "Username is required", http.StatusBadRequest)
-	// 	return
-	// }
-	// if req.Email == "" {
-	// 	app.sendErrorResponse(w, "Email is required", http.StatusBadRequest)
-	// 	return
-	// }
-	// if req.Password == "" {
-	// 	app.sendErrorResponse(w, "Password is required", http.StatusBadRequest)
-	// 	return
-	// }
+	if req.Username == "" {
+		app.sendErrorResponse(w, "Username is required", http.StatusBadRequest)
+		return
+	}
+	if req.Email == "" {
+		app.sendErrorResponse(w, "Email is required", http.StatusBadRequest)
+		return
+	}
+	if req.Password == "" {
+		app.sendErrorResponse(w, "Password is required", http.StatusBadRequest)
+		return
+	}
 
 	// Create user in database
 	err = app.UserModel.Create(req.Username, req.Email, req.Password)
@@ -142,11 +143,12 @@ func (app *application) getUser(w http.ResponseWriter, r *http.Request, username
 // updateUser handles PUT /users/{username}
 func (app *application) updateUser(w http.ResponseWriter, r *http.Request, username string) {
 	var req UserRequest
-	err := json.NewDecoder(r.Body).Decode(&req)
+	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		app.sendErrorResponse(w, "Invalid request body", http.StatusBadRequest)
+		// Erro handling
 		return
 	}
+	json.Unmarshal(body, &req)
 
 	// For update, only password is typically updated
 	// You can extend this to update email as well
