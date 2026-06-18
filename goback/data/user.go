@@ -45,7 +45,7 @@ func (m *UserModel) verifyPassword(plainPassword, storedHash string) bool {
 func (m *UserModel) Create(username, email, password string) error {
 	// Check if user already exists
 	var exists bool
-	checkQuery := "SELECT EXISTS(SELECT 1 FROM users WHERE username = ? OR email = ?)"
+	checkQuery := "SELECT EXISTS(SELECT 1 FROM users WHERE username = $1 OR email = $2)"
 	err := m.DB.QueryRow(checkQuery, username, email).Scan(&exists)
 	if err != nil && err != sql.ErrNoRows {
 		return fmt.Errorf("error checking existing user: %w", err)
@@ -58,7 +58,7 @@ func (m *UserModel) Create(username, email, password string) error {
 	hashedPassword := m.hashPassword(password)
 
 	// Insert the new user
-	query := "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)"
+	query := "INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3)"
 	_, err = m.DB.Exec(query, username, email, hashedPassword)
 	if err != nil {
 		return fmt.Errorf("error creating user: %w", err)
@@ -69,7 +69,7 @@ func (m *UserModel) Create(username, email, password string) error {
 
 // GetByUsername retrieves a user by username
 func (m *UserModel) GetByUsername(username string) (*User, error) {
-	query := "SELECT username, email, password_hash FROM users WHERE username = ?"
+	query := "SELECT username, email, password_hash FROM users WHERE username = $1"
 	user := &User{}
 
 	err := m.DB.QueryRow(query, username).Scan(&user.Username, &user.Email, &user.Password)
@@ -85,7 +85,7 @@ func (m *UserModel) GetByUsername(username string) (*User, error) {
 
 // GetByEmail retrieves a user by email
 func (m *UserModel) GetByEmail(email string) (*User, error) {
-	query := "SELECT username, email, password_hash FROM users WHERE email = ?"
+	query := "SELECT username, email, password_hash FROM users WHERE email = $1"
 	user := &User{}
 
 	err := m.DB.QueryRow(query, email).Scan(&user.Username, &user.Email, &user.Password)
@@ -110,7 +110,7 @@ func (m *UserModel) Authenticate(usernameOrEmail, password string) (*User, error
 	}
 
 	// Try to find user by username or email
-	query = "SELECT username, email, password_hash FROM users WHERE username = ? OR email = ?"
+	query = "SELECT username, email, password_hash FROM users WHERE username = $1 OR email = $2"
 	err := m.DB.QueryRow(query, usernameOrEmail, usernameOrEmail).Scan(
 		&user.Username, &user.Email, &user.Password,
 	)
@@ -134,7 +134,7 @@ func (m *UserModel) Authenticate(usernameOrEmail, password string) (*User, error
 func (m *UserModel) UpdatePassword(username, newPassword string) error {
 	hashedPassword := m.hashPassword(newPassword)
 
-	query := "UPDATE users SET password_hash = ? WHERE username = ?"
+	query := "UPDATE users SET password_hash = $1 WHERE username = $2"
 	result, err := m.DB.Exec(query, hashedPassword, username)
 	if err != nil {
 		return fmt.Errorf("error updating password: %w", err)
@@ -154,7 +154,7 @@ func (m *UserModel) UpdatePassword(username, newPassword string) error {
 
 // Delete removes a user from the database
 func (m *UserModel) Delete(username string) error {
-	query := "DELETE FROM users WHERE username = ?"
+	query := "DELETE FROM users WHERE username = $1"
 	result, err := m.DB.Exec(query, username)
 	if err != nil {
 		return fmt.Errorf("error deleting user: %w", err)
@@ -175,7 +175,7 @@ func (m *UserModel) Delete(username string) error {
 // Exists checks if a user exists by username or email
 func (m *UserModel) Exists(username, email string) (bool, error) {
 	var exists bool
-	query := "SELECT EXISTS(SELECT 1 FROM users WHERE username = ? OR email = ?)"
+	query := "SELECT EXISTS(SELECT 1 FROM users WHERE username = $1 OR email = $2)"
 	err := m.DB.QueryRow(query, username, email).Scan(&exists)
 	if err != nil {
 		return false, fmt.Errorf("error checking user existence: %w", err)
