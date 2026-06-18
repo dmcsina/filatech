@@ -16,6 +16,7 @@ import (
 type application struct {
 	logger    *log.Logger
 	UserModel data.UserModel
+	JwtSecret []byte
 }
 
 func main() {
@@ -31,13 +32,17 @@ func main() {
 	var password string
 	var sslmode string
 	var secretkey string
+	var jwtsecretString string
 
 	flag.StringVar(&user, "db-user", os.Getenv("user"), "DB user")
 	flag.StringVar(&database, "db", os.Getenv("dbname"), "DB")
 	flag.StringVar(&password, "password", os.Getenv("password"), "DB user password")
 	flag.StringVar(&sslmode, "sslmode", os.Getenv("sslmode"), "Ssl mode")
 	flag.StringVar(&secretkey, "secretkey", os.Getenv("secretkey"), "secretKey")
+	flag.StringVar(&jwtsecretString, "jwtsecretkey", os.Getenv("jwtsecret"), "jwtsecret")
 	var dsn string = fmt.Sprintf("user=%s password=%s dbname=%s sslmode=%s", user, password, database, sslmode)
+
+	app.JwtSecret = []byte(jwtsecretString)
 
 	db, err := sql.Open("postgres", dsn)
 	if err != nil {
