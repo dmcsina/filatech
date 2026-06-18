@@ -221,3 +221,54 @@ func (app *application) sendErrorResponse(w http.ResponseWriter, message string,
 	}
 	app.sendJSONResponse(w, response, status)
 }
+
+func (app *application) userLogin(w http.ResponseWriter, r *http.Request) {
+	var req UserRequest
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		return
+	}
+
+	json.Unmarshal(body, &req)
+
+	if req.Email == "" && req.Username == "" {
+		app.sendErrorResponse(w, "Username or email is required for login", http.StatusBadRequest)
+		return
+	}
+
+	if req.Email != "" {
+		user, err := app.UserModel.Authenticate(req.Email, req.Password)
+		if err != nil {
+			app.sendErrorResponse(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		token, err := app.GenerateToken(user.Username, user.Email)
+		if err != nil {
+			app.sendErrorResponse(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		tokenResponse := map[string]string{
+			"token": token,
+		}
+
+		app.sendJSONResponse(w, tokenResponse, http.StatusOK)
+	} else {
+		user, err := app.UserModel.Authenticate(req.Username, req.Password)
+		if err != nil {
+			app.sendErrorResponse(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		token, err := app.GenerateToken(user.Username, user.Email)
+		if err != nil {
+			app.sendErrorResponse(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		tokenResponse := map[string]string{
+			"token": token,
+		}
+
+		app.sendJSONResponse(w, tokenResponse, http.StatusOK)
+	}
+}
